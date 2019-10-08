@@ -4,7 +4,7 @@ public class App {
     public String getGreeting() {
         return "Hello world.";
     }
-
+//Setting up here 
     public static void main(String[] args) {
 
          //Place birthday party orders
