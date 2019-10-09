@@ -18,7 +18,7 @@ public class App {
 
     public static void main(String[] args) {
 
-    	System.out.println("*****Updated My project*****");
+  
 		Order order = new OrderImpl();
 
 		// Place birthday party orders
@@ -37,14 +37,12 @@ public class App {
 			cakeBuilder.frostingFlavor = Flavor.CHOCOLATE;
 		}).createCake();
 		
-		System.out.println("---------- My Project Order Ballon Here ---------- " );
+		
 		order.orderBalloons(balloon);
-		System.out.println("---------- Order Cake Here ---------- " );
 		order.orderCake(cake);
 		
 
 		// Without Builders
-		System.out.println("---------- My Project Order Without Builders -----------");
 		order.orderBalloons(new Balloon(Color.BLUE, "latex", 7));
 		order.orderCake(new Cake(Flavor.VANILLA, Flavor.CHOCOLATE, Shape.SQUARE, Size.MEDIUM, Color.BROWN));
 		
