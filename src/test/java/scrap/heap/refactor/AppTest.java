@@ -4,11 +4,50 @@
 package scrap.heap.refactor;
 
 import org.junit.Test;
+
+import scrap.heap.refactor.model.Balloon;
+import scrap.heap.refactor.model.Cake;
+import scrap.heap.refactor.model.Color;
+import scrap.heap.refactor.model.Flavor;
+import scrap.heap.refactor.model.Shape;
+import scrap.heap.refactor.model.Size;
+import scrap.heap.refactor.services.Order;
+import scrap.heap.refactor.services.OrderImpl;
+
 import static org.junit.Assert.*;
 
 public class AppTest {
-    @Test public void testAppHasAGreeting() {
+    @Test 
+    public void testAppHasAGreeting() {
         App classUnderTest = new App();
         assertNotNull("app should have a greeting", classUnderTest.getGreeting());
     }
+    
+   @Test
+   public void testOrderBallon() {
+	   Order order = new OrderImpl();
+	   Balloon ballon = new Balloon(Color.RED, "mylar", 4);
+	   String colour = " red";
+	   int number = 4;
+	   String material= "mylar";
+	   String message = "Balloons ordered;"+ colour +", "+ material + ", "+ number;
+	   
+	   assertEquals(message,order.orderBalloons(ballon));
+	  
+   }
+   @Test
+   public void testOrderCake() {
+	   Order order = new OrderImpl();
+	   Cake cake =  new  Cake(Flavor.VANILLA, Flavor.CHOCOLATE, Shape.SQUARE, Size.MEDIUM, Color.BROWN);
+	   String flavour = "vanilla";
+	   String frostingFlavour = "chocolate";
+	   String shape = "square";
+	   String size = "med";
+	   String colour= "brown";
+	   String message = "Cake ordered; "+ frostingFlavour + ", "+ flavour +", "+ shape +
+			   ", "+size+", "+ colour;
+	   
+	   assertEquals(message,order.orderCake(cake));
+	   
+   }
 }

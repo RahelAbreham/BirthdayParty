@@ -1,38 +1,57 @@
 package scrap.heap.refactor;
 
+import scrap.heap.refactor.model.Balloon;
+import scrap.heap.refactor.model.BalloonBuilder;
+import scrap.heap.refactor.model.Cake;
+import scrap.heap.refactor.model.CakeBuilder;
+import scrap.heap.refactor.model.Color;
+import scrap.heap.refactor.model.Flavor;
+import scrap.heap.refactor.model.Shape;
+import scrap.heap.refactor.model.Size;
+import scrap.heap.refactor.services.Order;
+import scrap.heap.refactor.services.OrderImpl;
+
 public class App {
     public String getGreeting() {
         return "Hello world.";
     }
-//Setting up here 
+
     public static void main(String[] args) {
 
-         //Place birthday party orders
-         order("red", "mylar", "4", "chocolate", "chocolate", "circle", "large", "brown" );
-         order("blue", "latex", "7", "Vanilla", "chocelate", "square", "med", "brown" );
-         order("yellow", "mylar", "4", "vanilla", "vanilla", "square", "small", "yellow" );
+    	System.out.println("*****Updated My project*****");
+		Order order = new OrderImpl();
+
+		// Place birthday party orders
+		Balloon balloon = new BalloonBuilder().with(balloonBuilder -> {
+			balloonBuilder.balloonColor = Color.RED;
+			balloonBuilder.number = 4;
+			balloonBuilder.material = "mylar";
+
+		}).createBalloon();
+
+		Cake cake = new CakeBuilder().with(cakeBuilder -> {
+			cakeBuilder.cakeColor = Color.BROWN;
+			cakeBuilder.size = Size.LARGE;
+			cakeBuilder.shape = Shape.CIRCLE;
+			cakeBuilder.flavor = Flavor.CHOCOLATE;
+			cakeBuilder.frostingFlavor = Flavor.CHOCOLATE;
+		}).createCake();
+		
+		System.out.println("---------- My Project Order Ballon Here ---------- " );
+		order.orderBalloons(balloon);
+		System.out.println("---------- Order Cake Here ---------- " );
+		order.orderCake(cake);
+		
+
+		// Without Builders
+		System.out.println("---------- My Project Order Without Builders -----------");
+		order.orderBalloons(new Balloon(Color.BLUE, "latex", 7));
+		order.orderCake(new Cake(Flavor.VANILLA, Flavor.CHOCOLATE, Shape.SQUARE, Size.MEDIUM, Color.BROWN));
+		
+		order.orderBalloons(new Balloon(Color.YELLOW, "mylar", 4));
+		order.orderCake(new Cake(Flavor.VANILLA, Flavor.VANILLA, Shape.SQUARE, Size.SMALL, Color.YELLOW));
 
     }
-
-    private static void order(String balloonColor, String material, String number, String flavor, String frostingFlavor, String shape, String size, String cakeColor){
-
-        orderBalloons(balloonColor, material, number);
-
-        orderCake(frostingFlavor, flavor, shape, size, cakeColor);
-    }
-
-    private static void orderBalloons(String balloonColor, String material, String number){
-
-        //for the purposes of this exercise, pretend this method works and adds balloons to the order
-        System.out.println("Balloons ordered; " + balloonColor + ", " + material  + ", " + number);
-
-    }
-
-    private static void orderCake(String flavor, String frostingFlavor, String shape, String size, String cakeColor){
-
-        //for the purposes of this exercise, pretend that this method adds a cake to the order
-        System.out.println("cake ordered; " + flavor + ", " + frostingFlavor  + ", " + shape + ", " + size + ", " + cakeColor);
-
-    }
+ 
 
 }
